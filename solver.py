@@ -261,7 +261,7 @@ class Solver(object):
             '''print('Epoch:[%2d/%2d] | Validation Loss : %.3f | mae : %.3f|fMeasure: %.3f' % (epoch, self.config.epoch,loss_val_r/len(self.val_loader.dataset),mae,fMeasure))
             writer.add_scalar('validation loss', loss_val ,epoch * len(self.val_loader.dataset) + i)'''
         # save model
-        self.my_plot(np.linspace(1, self.epoch, self.epoch).astype(int), loss_vals)
+        self.my_plot(np.linspace(1, self.config.epoch, self.config.epoch).astype(int), loss_vals)
         torch.save(self.net.state_dict(), '%s/final.pth' % self.config.save_folder)
         
 
