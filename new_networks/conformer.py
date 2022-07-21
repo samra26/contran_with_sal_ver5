@@ -624,7 +624,7 @@ class Decoder(nn.Module):
         sal_med=rgb_m+depth_m
         rgb_l=self.upsample(lde_c)
         d=lde_t[:, 1:].transpose(1, 2).unflatten(2,(20,20))
-        depth_l=self.upsample1(lde_t[0][:, 1:].transpose(1, 2).unflatten(2,(20,20)))
+        depth_l=self.upsample1(lde_t[:, 1:].transpose(1, 2).unflatten(2,(20,20)))
         sal_low=rgb_l+depth_l
         sal_final=self.up2(self.up2(sal_low+self.up2((sal_med+(self.up2(sal_high))))))
         #print(sal_high.shape,sal_med.shape,sal_low.shape, sal_final.shape)
