@@ -525,7 +525,7 @@ class LDELayer(nn.Module):
         depth_lde=fconv_c*(self.softmax((q[j]*list_y[j])*k[j])*v[j])
         rgb_lde=self.conv_rgb(list_x[j])
              
-        print('rgb_lde',rgb_lde.shape,depth_lde.shape)
+        #print('rgb_lde',rgb_lde.shape,depth_lde.shape)
 
 
         return rgb_lde,depth_lde
