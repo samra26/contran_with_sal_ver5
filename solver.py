@@ -48,7 +48,7 @@ class Solver(object):
 
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=self.lr, weight_decay=self.wd)
 
-        #self.print_network(self.net, 'Conformer based SOD Structure')
+        self.print_network(self.net, 'Conformer based SOD Structure')
 
     # print the network information and parameter numbers
     def print_network(self, model, name):
@@ -261,7 +261,7 @@ class Solver(object):
             '''print('Epoch:[%2d/%2d] | Validation Loss : %.3f | mae : %.3f|fMeasure: %.3f' % (epoch, self.config.epoch,loss_val_r/len(self.val_loader.dataset),mae,fMeasure))
             writer.add_scalar('validation loss', loss_val ,epoch * len(self.val_loader.dataset) + i)'''
         # save model
-        my_plot(np.linspace(1, self.epoch, self.epoch).astype(int), loss_vals)
+        self.my_plot(np.linspace(1, self.epoch, self.epoch).astype(int), loss_vals)
         torch.save(self.net.state_dict(), '%s/final.pth' % self.config.save_folder)
         
 
@@ -279,7 +279,7 @@ class Solver(object):
             tp = (y_temp * y).sum()
             prec[i], recall[i] = tp / (y_temp.sum() + 1e-20), tp / (y.sum() + 1e-20)
         return prec, recall
-    def my_plot(epochs, loss):
+    def my_plot(self,epochs, loss):
         plt.figure()
         plt.plot(epochs, loss)
         plt.xlabel("epochs")
